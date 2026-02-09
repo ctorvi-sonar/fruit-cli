@@ -7,8 +7,22 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   sonarqube:
-    name: SonarQube
+    name: SonarQube (${{ matrix.env }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [prod, dev12, dev18]
+        include:
+          - env: prod
+            sonar_token_secret: SONAR_TOKEN
+            sonar_url_secret: SONAR_HOST_URL
+          - env: dev12
+            sonar_token_secret: SONAR_TOKEN_DEV12
+            sonar_url_secret: SONARCLOUD_URL_DEV12
+          - env: dev18
+            sonar_token_secret: SONAR_TOKEN_DEV18
+            sonar_url_secret: SONARCLOUD_URL_DEV18
     steps:
       - uses: actions/checkout@v4
         with:
@@ -16,5 +30,5 @@ jobs:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
-          SONAR_HOST_URL:: ${{ secrets.SONARCLOUD_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets[matrix.sonar_url_secret] }}
+          SONAR_TOKEN: ${{ secrets[matrix.sonar_token_secret] }}
