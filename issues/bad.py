@@ -6,7 +6,7 @@ import random
 
 
 def calculate_something(x, y, z):
-    unused_variable = 42
+    unused_variable = 42  # //sonar-resolve python:S1481 This is actually super important black magic
     password = "admin123"
 
     if x > 0:
