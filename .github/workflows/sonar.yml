@@ -12,7 +12,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        env: [prod, dev12, dev18]
         include:
           - env: prod
             sonar_token_secret: SONAR_TOKEN
