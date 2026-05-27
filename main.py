@@ -7,39 +7,13 @@ from typing import List
 
 # Comprehensive list of fruits
 FRUITS = [
-    "Apple",
-    "Banana",
-    "Orange",
-    "Mango",
-    "Strawberry",
-    "Pineapple",
-    "Watermelon",
-    "Grape",
-    "Kiwi",
-    "Peach",
-    "Pear",
-    "Cherry",
-    "Plum",
-    "Blueberry",
-    "Raspberry",
-    "Blackberry",
-    "Lemon",
-    "Lime",
-    "Grapefruit",
-    "Papaya",
-    "Coconut",
-    "Avocado",
-    "Pomegranate",
-    "Fig",
-    "Apricot",
-    "Cantaloupe",
-    "Honeydew",
-    "Tangerine",
-    "Nectarine",
-    "Passion Fruit",
+    "Apple", "Banana", "Orange", "Mango", "Strawberry",
+    "Pineapple", "Watermelon", "Grape", "Kiwi", "Peach",
+    "Pear", "Cherry", "Plum", "Blueberry", "Raspberry",
+    "Blackberry", "Lemon", "Lime", "Grapefruit", "Papaya",
+    "Coconut", "Avocado", "Pomegranate", "Fig", "Apricot",
+    "Cantaloupe", "Honeydew", "Tangerine", "Nectarine", "Passion Fruit",
 ]
-
-# HELLO ZIPENG
 
 
 def get_random_fruits(count: int) -> List[str]:
