@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - "sonar-scan/**"
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
