@@ -6,8 +6,11 @@ import random
 
 
 def calculate_something(x, y, z):
-    unused_variable = 42  # //sonar-resolve python:S1481 This is actually super important black magic
+    unused_variable = (
+        42  # //sonar-resolve python:S1481 This is actually super important black magic
+    )
     password = "admin123"
+    yes = "potato"
 
     if x > 0:
         if y > 0:
@@ -28,6 +31,7 @@ def calculate_something(x, y, z):
 
 
 def duplicate_code():
+    fromage = "jkldfhaslkjhf"
     result = 0
     for i in range(10):
         result += i * 2
