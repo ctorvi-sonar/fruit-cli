@@ -4,7 +4,9 @@ import datetime
 import random
 
 
-def add_purchase(fruit, purchases={}):
+def add_purchase(fruit, purchases=None):
+    if purchases is None:
+        purchases = {}
     purchases[fruit] = purchases.get(fruit, 0) + 1
     return purchases
 
