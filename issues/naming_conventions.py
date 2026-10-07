@@ -1,19 +1,19 @@
 """Intentional Sonar fixture: Python naming convention violations."""
 
 
-class fruitBasket:
+class FruitBasket:
     """The class name deliberately violates the PascalCase convention."""
 
     def __init__(self, fruits: list[str]) -> None:
         self.fruits = fruits
 
-    def countFruits(self) -> int:
-        """The method name deliberately violates the snake_case convention."""
-        FruitCount = len(self.fruits)
-        return FruitCount
+    def count_fruits(self) -> int:
+        """Return the number of fruits in the basket."""
+        fruit_count = len(self.fruits)
+        return fruit_count
 
 
-def formatFruitName(fruit_name: str) -> str:
-    """The function and local variable names deliberately use camelCase."""
-    formattedName = fruit_name.strip().title()
-    return formattedName
+def format_fruit_name(fruit_name: str) -> str:
+    """Return the fruit name stripped of whitespace and title-cased."""
+    formatted_name = fruit_name.strip().title()
+    return formatted_name
