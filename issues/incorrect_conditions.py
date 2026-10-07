@@ -3,6 +3,6 @@
 
 def is_supported_fruit(name: str) -> bool:
     """The nonempty string makes unsupported fruits pass validation."""
-    if name == "apple" or "banana":
+    if name == "apple" or name == "banana":
         return True
     return False
