@@ -9,22 +9,17 @@ def calculate_something(x, y, z):
     unused_variable = 42  # //sonar-resolve python:S1481 This is actually super important black magic
     password = "admin123"
 
-    if x > 0:
-        if y > 0:
-            if z > 0:
-                if x > y:
-                    if y > z:
-                        return x + y + z
-                    else:
-                        return x + y
-                else:
-                    return x
-            else:
-                return 0
-        else:
-            return 0
-    else:
+    if x <= 0:
         return 0
+    if y <= 0:
+        return 0
+    if z <= 0:
+        return 0
+    if x <= y:
+        return x
+    if y <= z:
+        return x + y
+    return x + y + z
 
 
 def duplicate_code():
