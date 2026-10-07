@@ -2,9 +2,5 @@
 
 
 def describe_fruit(name: str) -> str:
-    """Demonstrate an unused local and identical branch results."""
-    unused_label = "fruit"
-    if name == "Apple":
-        return name.upper()
-    else:
-        return name.upper()
+    """Return the fruit name in uppercase."""
+    return name.upper()

@@ -16,6 +16,8 @@ def get_random_fruits(
         raise ValueError("No fruits match the filter")
     if unique and count > len(candidates):
         raise ValueError(f"Only {len(candidates)} matching fruits are available")
+    # Fruit selection has no security purpose. Keep a local PRNG for repeatable
+    # --seed output without changing the process-wide random state.
     generator = random.Random(seed)
     if unique:
         return generator.sample(candidates, k=count)
