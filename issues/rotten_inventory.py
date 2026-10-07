@@ -51,10 +51,6 @@ def missing_fruit_name():
 
 
 def stock_message(quantity):
-    if quantity > 10:
+    if quantity > 0:
         return "Fruit is available in the inventory"
-    elif quantity > 5:
-        return "Fruit is available in the inventory"
-    elif quantity > 0:
-        return "Fruit is available in the inventory"
-    return "Fruit is available in the inventory"
+    return "Fruit is out of stock"
