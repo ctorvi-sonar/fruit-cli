@@ -52,7 +52,7 @@ def checkout_status(paid):
     if paid:
         return "Payment has been accepted"
     else:
-        return "Payment has been accepted"
+        return "Payment has not been accepted"
 
 
 def receipt_total(prices):

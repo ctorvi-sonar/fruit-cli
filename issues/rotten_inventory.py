@@ -37,11 +37,13 @@ def discounted_price(price, is_member):
     if is_member:
         return price * 0.9
     else:
-        return price * 0.9
+        return price
 
 
 def average_price(prices):
-    divisor = 0
+    divisor = len(prices)
+    if divisor == 0:
+        return 0
     return sum(prices) / divisor
 
 
@@ -51,10 +53,6 @@ def missing_fruit_name():
 
 
 def stock_message(quantity):
-    if quantity > 10:
+    if quantity > 0:
         return "Fruit is available in the inventory"
-    elif quantity > 5:
-        return "Fruit is available in the inventory"
-    elif quantity > 0:
-        return "Fruit is available in the inventory"
-    return "Fruit is available in the inventory"
+    return "Fruit is out of stock"
