@@ -1,46 +1,12 @@
 """Fruit CLI - Generate random fruits."""
 
 import argparse
-import random
 import sys
-from typing import List
+from fruit_catalog import FRUITS, filter_fruits
+from fruit_output import format_fruits
+from fruit_selection import get_random_fruits as select_fruits
 
-# Comprehensive list of fruits
-FRUITS = [
-    "Apple",
-    "Banana",
-    "Orange",
-    "Mango",
-    "Strawberry",
-    "Pineapple",
-    "Watermelon",
-    "Grape",
-    "Kiwi",
-    "Peach",
-    "Pear",
-    "Cherry",
-    "Plum",
-    "Blueberry",
-    "Raspberry",
-    "Blackberry",
-    "Lemon",
-    "Lime",
-    "Grapefruit",
-    "Papaya",
-    "Coconut",
-    "Avocado",
-    "Pomegranate",
-    "Fig",
-    "Apricot",
-    "Cantaloupe",
-    "Honeydew",
-    "Tangerine",
-    "Nectarine",
-    "Passion Fruit",
-]
-
-
-def get_random_fruits(count: int) -> List[str]:
+def get_random_fruits(count: int) -> list[str]:
     """
     Get a list of random fruits.
 
@@ -53,14 +19,10 @@ def get_random_fruits(count: int) -> List[str]:
     Raises:
         ValueError: If count is less than or equal to 0.
     """
-    if count <= 0:
-        raise ValueError("Count must be a positive integer")
-
-    # Use random.choices to allow duplicates when count > len(FRUITS)
-    return random.choices(FRUITS, k=count)
+    return select_fruits(count)
 
 
-def parse_arguments() -> argparse.Namespace:
+def parse_arguments(argv: list[str] | None = None) -> argparse.Namespace:
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(
         description="Generate random fruits",
@@ -69,7 +31,7 @@ def parse_arguments() -> argparse.Namespace:
 Examples:
   %(prog)s          # Get one random fruit
   %(prog)s 5        # Get 5 random fruits
-  %(prog)s --count 3  # Get 3 random fruits
+  %(prog)s 2 --unique --seed 42 --format json
         """,
     )
     parser.add_argument(
@@ -79,10 +41,15 @@ Examples:
         default=1,
         help="Number of random fruits to generate (default: 1)",
     )
-    return parser.parse_args()
+    parser.add_argument("--filter", default="", help="Case-insensitive name substring")
+    parser.add_argument("--unique", action="store_true", help="Select without duplicates")
+    parser.add_argument("--seed", type=int, help="Seed for reproducible selections")
+    parser.add_argument("--format", choices=("text", "json"), default="text")
+    parser.add_argument("--list", action="store_true", help="List matching fruits instead")
+    return parser.parse_args(argv)
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     """
     Main entry point for the fruit CLI.
 
@@ -90,12 +57,16 @@ def main() -> int:
         Exit code (0 for success, 1 for error).
     """
     try:
-        args = parse_arguments()
-        fruits = get_random_fruits(args.count)
-
-        # Print each fruit on a new line
-        for fruit in fruits:
-            print(fruit)
+        args = parse_arguments(argv)
+        if args.list:
+            fruits = filter_fruits(args.filter)
+        else:
+            fruits = select_fruits(
+                args.count, query=args.filter, unique=args.unique, seed=args.seed
+            )
+        output = format_fruits(fruits, args.format)
+        if output:
+            print(output)
 
         return 0
     except ValueError as e:
