@@ -56,8 +56,8 @@ def get_random_fruits(count: int) -> List[str]:
     if count <= 0:
         raise ValueError("Count must be a positive integer")
 
-    # Use random.choices to allow duplicates when count > len(FRUITS)
-    return random.choices(FRUITS, k=count)
+    # Use SystemRandom().choices to allow duplicates when count > len(FRUITS)
+    return random.SystemRandom().choices(FRUITS, k=count)
 
 
 def parse_arguments() -> argparse.Namespace:
