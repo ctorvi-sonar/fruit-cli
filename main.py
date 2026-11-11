@@ -39,6 +39,8 @@ FRUITS = [
     "Passion Fruit",
 ]
 
+MAX_FRUIT_COUNT = 1000
+
 
 def get_random_fruits(count: int) -> List[str]:
     """
@@ -52,9 +54,13 @@ def get_random_fruits(count: int) -> List[str]:
 
     Raises:
         ValueError: If count is less than or equal to 0.
+        ValueError: If count is greater than MAX_FRUIT_COUNT.
     """
     if count <= 0:
         raise ValueError("Count must be a positive integer")
+
+    if count > MAX_FRUIT_COUNT:
+        raise ValueError(f"Count must not exceed {MAX_FRUIT_COUNT}")
 
     # Use random.choices to allow duplicates when count > len(FRUITS)
     return random.choices(FRUITS, k=count)
