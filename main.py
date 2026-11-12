@@ -51,10 +51,13 @@ def get_random_fruits(count: int) -> List[str]:
         List of random fruit names.
 
     Raises:
-        ValueError: If count is less than or equal to 0.
+        ValueError: If count is less than or equal to 0, or greater than 1000.
     """
     if count <= 0:
         raise ValueError("Count must be a positive integer")
+
+    if count > 1000:
+        raise ValueError("Count must not exceed 1000")
 
     # Use random.choices to allow duplicates when count > len(FRUITS)
     return random.choices(FRUITS, k=count)
