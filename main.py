@@ -1,7 +1,7 @@
 """Fruit CLI - Generate random fruits."""
 
 import argparse
-import random
+import secrets
 import sys
 from typing import List
 
@@ -56,8 +56,9 @@ def get_random_fruits(count: int) -> List[str]:
     if count <= 0:
         raise ValueError("Count must be a positive integer")
 
-    # Use random.choices to allow duplicates when count > len(FRUITS)
-    return random.choices(FRUITS, k=count)
+    # Use secrets.choice to allow duplicates when count > len(FRUITS).
+    # Note: this is not security-sensitive; used for random fruit selection only.
+    return [secrets.choice(FRUITS) for _ in range(count)]
 
 
 def parse_arguments() -> argparse.Namespace:
